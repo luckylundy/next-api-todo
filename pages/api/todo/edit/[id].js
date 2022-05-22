@@ -2,7 +2,6 @@ import prisma from "../../../../lib/prisma";
 
 const editTodo = async (req, res) => {
   console.log(req.query);
-  console.log(req.params);
   try {
     //idがリクエストのqueryに格納されているidと合致するtodoを編集する
     await prisma.todo.update({

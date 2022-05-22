@@ -7,6 +7,7 @@ const Edit = (props) => {
   const [editTitle, setEditTitle] = useState(props.todo.title);
   // propsからtodoのcontentの初期値を設定;
   const [editContent, setEditContent] = useState(props.todo.content);
+  const [editStatus, setEditStatus] = useState(props.todo.status);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -21,6 +22,7 @@ const Edit = (props) => {
         body: JSON.stringify({
           title: editTitle,
           content: editContent,
+          status: editStatus,
         }),
       });
       router.push("/");
@@ -33,6 +35,14 @@ const Edit = (props) => {
     <>
       <h1>TODOを編集</h1>
       <form onSubmit={handleSubmit}>
+        <select onChange={(e) => setEditStatus(e.target.value)}>
+          <option value="" selected>
+            TODOのステータスを変更
+          </option>
+          <option value="notStarted">未着手</option>
+          <option value="inProgress">作業中</option>
+          <option value="done">完了</option>
+        </select>
         <input
           value={editTitle}
           onChange={(e) => setEditTitle(e.target.value)}
@@ -49,7 +59,7 @@ const Edit = (props) => {
           placeholder="内容"
           required
         ></textarea>
-        <button>作成</button>
+        <button>更新</button>
       </form>
       <p>
         <Link href={`/todo/${props.todo.id}`}>

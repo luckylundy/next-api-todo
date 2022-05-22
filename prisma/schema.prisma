@@ -15,6 +15,7 @@ model Todo {
   id        String   @default(cuid()) @id
   title     String
   content   String
+  status    String   @default("notStarted")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

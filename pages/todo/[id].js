@@ -25,6 +25,7 @@ const About = (props) => {
       <h1>TODO詳細</h1>
       <div>
         <h1>{props.todo.title}</h1>
+        <h3>{props.todo.status}</h3>
         <h2>{props.todo.content}</h2>
         <Link href={`/todo/edit/${props.todo.id}`}>
           <a>TODOを編集する</a>
