@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Home = (props) => {
   const [searchTitle, setSearchTitle] = useState("");
   const [searchStatus, setSearchStatus] = useState("");
   const router = useRouter();
+  const { data: session } = useSession();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,8 +25,20 @@ const Home = (props) => {
     setSearchStatus("");
   };
 
+  if (!session) {
+    return (
+      <>
+        サインインしていません
+        <br />
+        <button onClick={() => signIn()}>サインイン</button>
+      </>
+    );
+  }
+
   return (
     <>
+      {session.user.name}
+      <button onClick={() => signOut()}>サインアウト</button>
       <h1>TODO一覧</h1>
       <div>
         <h4>TODOを検索する</h4>
