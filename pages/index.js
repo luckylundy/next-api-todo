@@ -1,42 +1,32 @@
 import Link from "next/link";
-// import { useState } from "react";
-// import { useRouter } from "next/router";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Home = (props) => {
-  // const [searchTitle, setSearchTitle] = useState("");
-  // const [searchStatus, setSearchStatus] = useState("");
-  // const router = useRouter();
+  const [searchTitle, setSearchTitle] = useState("");
+  const [searchStatus, setSearchStatus] = useState("");
+  const router = useRouter();
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     //検索フォームの内容をフィルタリングAPIに送る
-  //     await fetch("http://localhost:3000/api/todo/filter", {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         title: searchTitle,
-  //         status: searchStatus,
-  //       }),
-  //     });
-  //     router.push("/todo/search");
-  //   } catch (err) {
-  //     alert("Error: " + err.message);
-  //   }
-  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    router.push({
+      pathname: "/todo/search",
+      query: {
+        title: searchTitle,
+        status: searchStatus,
+      },
+    });
+  };
 
-  // const onClickReset = () => {
-  //   setSearchTitle("");
-  //   setSearchStatus("");
-  // };
+  const onClickReset = () => {
+    setSearchTitle("");
+    setSearchStatus("");
+  };
 
   return (
     <>
       <h1>TODO一覧</h1>
-      {/* <div>
+      <div>
         <h4>TODOを検索する</h4>
         <form onSubmit={handleSubmit}>
           <select onChange={(e) => setSearchStatus(e.target.value)}>
@@ -55,7 +45,7 @@ const Home = (props) => {
           <button>検索</button>
         </form>
         <button onClick={onClickReset}>リセット</button>
-      </div> */}
+      </div>
       <Link href="/todo/create">
         <a>新しいTODOを作成する</a>
       </Link>

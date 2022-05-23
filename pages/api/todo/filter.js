@@ -5,7 +5,7 @@ const filteringTodos = async (req, res) => {
   try {
     const todos = await prisma.todo.findMany({
       where: {
-        OR: [
+        AND: [
           {
             title: {
               contains: req.query.title,
