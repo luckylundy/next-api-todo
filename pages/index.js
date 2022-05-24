@@ -66,9 +66,11 @@ const Home = (props) => {
       {props.todos.map((todo) => (
         <Link href={`/todo/${todo.id}`} key={todo.id}>
           <a>
-            <h3>{todo.title}</h3>
-            <h4>{todo.status}</h4>
-            <p>{todo.content}</p>
+            <div>
+              <h3>{todo.title}</h3>
+              <h4>{todo.status}</h4>
+              <h5>{todo.content}</h5>
+            </div>
           </a>
         </Link>
       ))}
