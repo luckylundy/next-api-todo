@@ -39,9 +39,7 @@ const Edit = (props) => {
       <h1>TODOを編集</h1>
       <form onSubmit={handleSubmit}>
         <select onChange={(e) => setEditStatus(e.target.value)}>
-          <option value="" selected>
-            TODOのステータスを変更
-          </option>
+          <option value="">TODOのステータスを変更</option>
           <option value="notStarted">未着手</option>
           <option value="inProgress">作業中</option>
           <option value="done">完了</option>
