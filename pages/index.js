@@ -84,11 +84,10 @@ export const getServerSideProps = async () => {
   );
   const todos = await response.json();
 
+  console.log(todos);
   //fetchに失敗した場合、エラーページを表示する
   if (!todos) {
-    return {
-      notFound: true,
-    };
+    todos = [];
   }
 
   return {
