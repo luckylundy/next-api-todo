@@ -18,5 +18,6 @@ export default NextAuth({
       return Promise.resolve(session);
     },
   },
+  debug: true,
   secret: process.env.NEXTAUTH_SECRET,
 });
