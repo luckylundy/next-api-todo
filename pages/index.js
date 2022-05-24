@@ -63,30 +63,36 @@ const Home = (props) => {
       <Link href="/todo/create">
         <a>新しいTODOを作成する</a>
       </Link>
-      {props.todos.map((todo) => (
-        <Link href={`/todo/${todo.id}`} key={todo.id}>
-          <a>
-            <div>
-              <h3>{todo.title}</h3>
-              <h4>{todo.status}</h4>
-              <h5>{todo.content}</h5>
-            </div>
-          </a>
-        </Link>
-      ))}
+      {props.todos.length < 1 ? (
+        <>
+          <p>TODOがありません。作成してください。</p>
+        </>
+      ) : (
+        props.todos.map((todo) => (
+          <Link href={`/todo/${todo.id}`} key={todo.id}>
+            <a>
+              <div>
+                <h3>{todo.title}</h3>
+                <h4>{todo.status}</h4>
+                <h5>{todo.content}</h5>
+              </div>
+            </a>
+          </Link>
+        ))
+      )}
     </>
   );
 };
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
   const response = await fetch(
     "https://next-api-todo.vercel.app/api/todo/read"
   );
-  const data = await response.json();
-  const todos = JSON.parse(data);
+  const todos = await response.json();
+
   //定数ではなく変数でtodosの値を可変にする
   // let todos = await response.json();
-  //もしtodosが配列でなければ、todosに空の配列を代入する
+  // もしtodosが配列でなければ、todosに空の配列を代入する
   // if (!Array.isArray(todos)) {
   //   todos = [];
   // }
