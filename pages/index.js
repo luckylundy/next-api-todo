@@ -94,7 +94,7 @@ export const getServerSideProps = async () => {
   if (!Array.isArray(data)) {
     const todos = [...data];
   } else {
-    const todos = data;
+    const todos = [...data];
   }
 
   //fetchに失敗した場合、エラーページを表示する
