@@ -33,7 +33,7 @@ export const getServerSideProps = async (context) => {
 
   //filter.jsで検索をかける
   const response = await fetch(
-    `http://localhost:3000/api/todo/filter?title=${title}&status=${status}`
+    `https://next-api-todo.vercel.app/api/todo/filter?title=${title}&status=${status}`
   );
   const searchedTodos = await response.json();
 

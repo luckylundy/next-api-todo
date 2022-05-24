@@ -9,17 +9,20 @@ const Create = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/api/todo/create", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: title,
-          content: content,
-        }),
-      });
+      const response = await fetch(
+        "https://next-api-todo.vercel.app/api/todo/create",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: title,
+            content: content,
+          }),
+        }
+      );
       router.push("/");
     } catch (err) {
       alert("Error: " + err.message);
