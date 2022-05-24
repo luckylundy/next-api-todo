@@ -11,12 +11,12 @@ export default NextAuth({
     }),
   ],
   adapter: PrismaAdapter(prisma),
-  callbacks: {
-    async session({ session, user }) {
-      //データベースのユーザーのidをsession.user.idにも代入する
-      session.user.id = user.id;
-      return Promise.resolve(session);
-    },
-  },
+  // callbacks: {
+  //   async session({ session, user }) {
+  //     //データベースのユーザーのidをsession.user.idにも代入する
+  //     session.user.id = user.id;
+  //     return Promise.resolve(session);
+  //   },
+  // },
   secret: process.env.SECRET,
 });
