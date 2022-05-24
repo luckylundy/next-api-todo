@@ -79,15 +79,18 @@ const Home = (props) => {
 };
 
 export const getServerSideProps = async () => {
+  const [todos, setTodos] = useState([]);
   const response = await fetch(
     "https://next-api-todo.vercel.app/api/todo/read"
   );
-  const todos = await response.json();
+  await setTodos(response.json());
 
   console.log(todos);
   //fetchに失敗した場合、エラーページを表示する
   if (!todos) {
-    todos = [];
+    return {
+      notFound: true,
+    };
   }
 
   return {
