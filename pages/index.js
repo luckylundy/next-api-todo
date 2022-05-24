@@ -82,11 +82,11 @@ export const getServerSideProps = async () => {
   const response = await fetch(
     "https://next-api-todo.vercel.app/api/todo/read"
   );
+  //定数ではなく変数でtodosの値を可変にする
+  let todos = await response.json();
   //もしtodosが配列でなければ、todosに空の配列を代入する
-  if (!Array.isArray(response.json())) {
-    const todos = [];
-  } else {
-    const todos = await response.json();
+  if (!Array.isArray(todos)) {
+    todos = [];
   }
 
   //fetchに失敗した場合、エラーページを表示する
