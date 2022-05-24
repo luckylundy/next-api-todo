@@ -18,16 +18,5 @@ export default NextAuth({
       return Promise.resolve(session);
     },
   },
-  logger: {
-    error(code, metadata) {
-      log.error(code, metadata);
-    },
-    warn(code) {
-      log.warn(code);
-    },
-    debug(code, metadata) {
-      log.debug(code, metadata);
-    },
-  },
   secret: process.env.NEXTAUTH_SECRET,
 });
