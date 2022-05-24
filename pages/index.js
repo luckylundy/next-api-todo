@@ -79,13 +79,14 @@ const Home = (props) => {
 };
 
 export const getServerSideProps = async () => {
-  const [todos, setTodos] = useState([]);
   const response = await fetch(
     "https://next-api-todo.vercel.app/api/todo/read"
   );
-  await setTodos(response.json());
-
-  console.log(todos);
+  const todos = await response.json();
+  //もしtodosが配列でなければ、todosに空の配列を代入する
+  if (!Array.isArray(todos)) {
+    todos = [];
+  }
   //fetchに失敗した場合、エラーページを表示する
   if (!todos) {
     return {
