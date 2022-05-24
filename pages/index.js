@@ -63,19 +63,17 @@ const Home = (props) => {
       <Link href="/todo/create">
         <a>新しいTODOを作成する</a>
       </Link>
-      {props.todos
-        ? props.todos.map((todo) => (
-            <Link href={`/todo/${todo.id}`} key={todo.id}>
-              <a>
-                <div>
-                  <h3>{todo.title}</h3>
-                  <h4>{todo.status}</h4>
-                  <h5>{todo.content}</h5>
-                </div>
-              </a>
-            </Link>
-          ))
-        : []}
+      {props.todos.map((todo) => (
+        <Link href={`/todo/${todo.id}`} key={todo.id}>
+          <a>
+            <div>
+              <h3>{todo.title}</h3>
+              <h4>{todo.status}</h4>
+              <h5>{todo.content}</h5>
+            </div>
+          </a>
+        </Link>
+      ))}
     </>
   );
 };
