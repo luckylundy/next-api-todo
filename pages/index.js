@@ -88,14 +88,20 @@ export const getServerSideProps = async () => {
   const response = await fetch(
     "https://next-api-todo.vercel.app/api/todo/read"
   );
+  const todos = response.json();
 
-  const data = await response.json();
-  // もしtodosが配列でなければ、todosを配列にする
-  if (!Array.isArray(data)) {
-    const todos = [...data];
-  } else {
-    const todos = [...data];
+  if (response === (null || undefined)) {
+    JSON.parse(response.json());
   }
+  const todos = response.json();
+
+  // const data = await response.json();
+  // もしtodosが配列でなければ、todosを配列にする
+  // if (!Array.isArray(data)) {
+  //   const todos = JSON.parse(data);
+  // } else {
+  //   const todos = [...data];
+  // }
 
   //fetchに失敗した場合、エラーページを表示する
   if (!todos) {
