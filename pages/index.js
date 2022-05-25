@@ -90,9 +90,9 @@ export const getServerSideProps = async () => {
   );
 
   if (response === (null || undefined)) {
-    JSON.parse(response.json());
+    await JSON.parse(response.json());
   }
-  const todos = response.json();
+  const todos = await response.json();
 
   // const data = await response.json();
   // もしtodosが配列でなければ、todosを配列にする
