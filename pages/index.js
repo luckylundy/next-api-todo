@@ -88,7 +88,6 @@ export const getServerSideProps = async () => {
   const response = await fetch(
     "https://next-api-todo.vercel.app/api/todo/read"
   );
-  const todos = response.json();
 
   if (response === (null || undefined)) {
     JSON.parse(response.json());
