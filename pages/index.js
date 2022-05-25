@@ -63,23 +63,17 @@ const Home = (props) => {
       <Link href="/todo/create">
         <a>新しいTODOを作成する</a>
       </Link>
-      {props.newTodos.length < 1 ? (
-        <>
-          <p>TODOがありません。作成してください。</p>
-        </>
-      ) : (
-        props.newTodos.map((todo) => (
-          <Link href={`/todo/${todo.id}`} key={todo.id}>
-            <a>
-              <div>
-                <h3>{todo.title}</h3>
-                <h4>{todo.status}</h4>
-                <h5>{todo.content}</h5>
-              </div>
-            </a>
-          </Link>
-        ))
-      )}
+      {props.newTodos.map((todo) => (
+        <Link href={`/todo/${todo.id}`} key={todo.id}>
+          <a>
+            <div>
+              <h3>{todo.title}</h3>
+              <h4>{todo.status}</h4>
+              <h5>{todo.content}</h5>
+            </div>
+          </a>
+        </Link>
+      ))}
     </>
   );
 };
@@ -89,19 +83,8 @@ export const getServerSideProps = async () => {
     "https://next-api-todo.vercel.app/api/todo/read"
   );
 
-  // if (response === (null || undefined)) {
-  //   await JSON.parse(response.json());
-  // }
   const todos = await response.json();
   const newTodos = Object.entries(todos);
-
-  // const data = await response.json();
-  // もしnewTodosが配列でなければ、newTodosを配列にする
-  // if (!Array.isArray(data)) {
-  //   const newTodos = JSON.parse(data);
-  // } else {
-  //   const newTodos = [...data];
-  // }
 
   //fetchに失敗した場合、エラーページを表示する
   if (!newTodos) {
