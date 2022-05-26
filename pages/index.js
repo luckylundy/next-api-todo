@@ -87,7 +87,7 @@ export const getServerSideProps = async () => {
   // const newTodos = Object.entries(todos);
 
   //fetchに失敗した場合、エラーページを表示する
-  if (!newTodos) {
+  if (!todos) {
     return {
       notFound: true,
     };
