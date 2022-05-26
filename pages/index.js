@@ -63,7 +63,7 @@ const Home = (props) => {
       <Link href="/todo/create">
         <a>新しいTODOを作成する</a>
       </Link>
-      {props.newTodos.map((todo) => (
+      {props.todos.map((todo) => (
         <Link href={`/todo/${todo.id}`} key={todo.id}>
           <a>
             <div>
@@ -84,7 +84,7 @@ export const getServerSideProps = async () => {
   );
 
   const todos = await response.json();
-  const newTodos = Object.entries(todos);
+  // const newTodos = Object.entries(todos);
 
   //fetchに失敗した場合、エラーページを表示する
   if (!newTodos) {
@@ -95,7 +95,8 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      newTodos,
+      // newTodos,
+      todos,
     },
   };
 };
