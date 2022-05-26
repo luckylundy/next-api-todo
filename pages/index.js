@@ -79,7 +79,9 @@ const Home = (props) => {
 };
 
 export const getServerSideProps = async () => {
-  const response = await fetch("http://localhost:3000/api/todo/read");
+  const response = await fetch(
+    "https://next-api-todo.vercel.app/api/todo/read"
+  );
 
   const todos = await response.json();
   // const newTodos = Object.entries(todos);

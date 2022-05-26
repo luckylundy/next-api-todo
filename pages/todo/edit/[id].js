@@ -13,18 +13,21 @@ const Edit = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch(`http://localhost:3000/api/todo/edit/${props.todo.id}`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: editTitle,
-          content: editContent,
-          status: editStatus,
-        }),
-      });
+      await fetch(
+        `https://next-api-todo.vercel.app/api/todo/edit/${props.todo.id}`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: editTitle,
+            content: editContent,
+            status: editStatus,
+          }),
+        }
+      );
       router.push("/");
     } catch (err) {
       alert("Error: " + err.message);
@@ -71,7 +74,7 @@ const Edit = (props) => {
 //propsでtodoのオブジェクトを利用できるようにする
 export const getServerSideProps = async (context) => {
   const response = await fetch(
-    `http://localhost:3000/api/todo/${context.query.id}`
+    `https://next-api-todo.vercel.app/api/todo/${context.query.id}`
   );
   const todo = await response.json();
 
