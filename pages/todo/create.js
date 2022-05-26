@@ -9,7 +9,7 @@ const Create = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch("https://next-api-todo.vercel.app/api/todo/create", {
+      await fetch("http://localhost:3000/api/todo/create", {
         method: "POST",
         headers: {
           Accept: "application/json",

@@ -6,16 +6,13 @@ const About = (props) => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await fetch(
-        `https://next-api-todo.vercel.app/api/todo/delete/${props.todo.id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      await fetch(`http://localhost:3000/api/todo/delete/${props.todo.id}`, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
       router.push("/");
     } catch (err) {
       console.log(err);
@@ -44,7 +41,7 @@ const About = (props) => {
 
 export async function getServerSideProps(context) {
   const response = await fetch(
-    `https://next-api-todo.vercel.app/api/todo/${context.query.id}`
+    `http://localhost:3000/api/todo/${context.query.id}`
   );
   const todo = await response.json();
 
